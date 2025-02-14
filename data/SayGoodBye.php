@@ -49,12 +49,35 @@ class ParentPerson
     }
 }
 
+trait all
+{
+    use sayHello, sayGoodBye, HasName, CanRun {
+        // dapat di Override
+        // hello as private;
+        // goodBye as private;
+    }
+}
+
 class Person extends ParentPerson
 {
-    use sayHello, sayGoodBye, HasName, CanRun;
+    // use sayHello, sayGoodBye, HasName, CanRun {
+    //     // dapat di Override
+    //     hello as private;
+    //     goodBye as private;
+    // }
+
+    // Trait Inheritance
+    use all;
 
     public function run(): void
     {
         echo "Person $this->name is running" . PHP_EOL;
     }
+
+    public function test(): void
+    {
+        $this->hello("Alvin");
+        $this->goodBye("Kevin");
+    }
+
 }
